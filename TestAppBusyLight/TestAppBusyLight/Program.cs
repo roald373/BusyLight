@@ -13,8 +13,8 @@ var microphoneKeyPath = $"{currentUser.Owner.Value}\\{consentPath}{microphonePat
 const string startValueName = "LastUsedTimeStart";
 const string endValueName = "LastUsedTimeStop";
 
-var lastUsedTimeStartValueWebcam = Registry.GetValue($"{hive}\\{webcamKeyPath}", startValueName, "0");
-var lastUsedTimeStopValueWebcam =  Registry.GetValue($"{hive}\\{webcamKeyPath}", endValueName, "0");
+var lastUsedTimeStartValueWebcam = Registry.GetValue($"{hive}\\{webcamKeyPath}", startValueName, 0l);
+var lastUsedTimeStopValueWebcam = Registry.GetValue($"{hive}\\{webcamKeyPath}", endValueName, 0l);
 
 var lastUsedTimeStartValueMicrophone = Registry.GetValue($"{hive}\\{microphoneKeyPath}", startValueName, 0l);
 var lastUsedTimeStopValueMicrophone = Registry.GetValue($"{hive}\\{microphoneKeyPath}", endValueName, 0l);
@@ -28,7 +28,7 @@ var lastUsedTimeStopMicrophone = DateTime.FromFileTime((long)lastUsedTimeStopVal
 bool webcamIsOn = false;
 bool microphoneIsOn = false;
 
-if(lastUsedTimeStartWebcam > lastUsedTimeStopWebcam)
+if (lastUsedTimeStartWebcam > lastUsedTimeStopWebcam)
 {
     Console.WriteLine("Started app and found webcam to be on!");
     webcamIsOn = true;
@@ -50,7 +50,6 @@ Console.ReadLine();
 
 void SubscribeToRegistryEvents(string valueName, string path, Action<EventArrivedEventArgs> handler)
 {
-
     var query = new WqlEventQuery($"SELECT * FROM RegistryValueChangeEvent WHERE Hive='{hive}' AND KeyPath='{path.Replace("\\", "\\\\")}' AND ValueName='{valueName}'");
     var watcher = new ManagementEventWatcher(query);
     watcher.EventArrived += (sender, args) => handler(args);
