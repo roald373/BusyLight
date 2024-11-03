@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TestAppBusyLight/TestAppBusyLight/bin/Debug/net7.0
+/TestAppBusyLight/TestAppBusyLight/obj
+/TestAppBusyLight/.vs
