@@ -6,10 +6,10 @@ using System.Text;
 using System.Text.Json;
 
 // define which LED types to update
-const bool updateWledWlanJSON = false;
+const bool updateWledWlanJSON = true;
 const bool updateWledSerialJSON = false;
 const bool updateArduinoSerialPort = false;
-const bool updateHomeAssistant = true;
+const bool updateHomeAssistant = false;
 
 //Arduino definitions
 const string arduinoComPort = "COM14";
@@ -24,7 +24,7 @@ const string homeAssistantAPIKey = "";
 // WLED definitions
 const string wledComPort = "COM7";
 const int wledComPortSpeed = 115200;
-const string wledJsonUrl = "http://10.30.0.112/json/";
+const string wledJsonUrl = "http://192.168.178.169/json/";
 
 // serial port definitions
 SerialPort _serialPortArduino = new SerialPort($"{arduinoComPort}", arduinoComPortSpeed, Parity.None, 8, StopBits.One);
@@ -177,13 +177,13 @@ async Task SendHA(string haStatus)
     if (haJsonResponse.IsSuccessStatusCode)
     {
         await haJsonResponse.Content.ReadAsStringAsync();
-        Console.WriteLine("WLED JSON over network sent successfully.");
+        Console.WriteLine("Homeassistant over network sent successfully.");
         return;
     }
     else
     {
         // Handle the error
-        Console.Write("Unable to communicate with WLED over network using ");
+        Console.Write("Unable to communicate with Homeassistant over network using ");
         Console.WriteLine(wledJsonUrl);
         Console.WriteLine(haJsonResponse.Content.ReadAsStringAsync());
         Console.WriteLine("HttpResponseMessage: ");
