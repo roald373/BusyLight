@@ -2,12 +2,8 @@
 using System.Management;
 using System.Security.Principal;
 using System.IO.Ports;
-//using System.Text.Json;
 using System.Text;
-using System.Net.Http.Json;
 using System.Text.Json;
-//using System;
-//using System.Net.Http;
 
 // define which LED types to update
 const bool updateWledWlanJSON = false;
