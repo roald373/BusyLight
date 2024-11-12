@@ -5,3 +5,5 @@
 /TestAppBusyLight/TestAppBusyLight/bin/Debug/net7.0
 /TestAppBusyLight/TestAppBusyLight/obj
 /TestAppBusyLight/.vs
+/TestAppBusyLight/Shared/obj
+/TestAppBusyLight/DesktopApp/obj
